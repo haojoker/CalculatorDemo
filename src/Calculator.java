@@ -98,12 +98,12 @@ public class Calculator {
         char operator = in.next().charAt(0);
         double b = in.nextDouble();
         switch (operator){
-            case "+" : calculator.add(a,b);break;
-            case "-" : calculator.subtract(a,b);break;
-            case "*" : calculator.multiply(a,b);break;
-            case "/" : calculator.divide(a,b);break;
-            case "r" : calculator.redo();break;
-            case "u" : calculator.undo();break;
+            case '+' : calculator.add(a,b);break;
+            case '-' : calculator.subtract(a,b);break;
+            case '*' : calculator.multiply(a,b);break;
+            case '/' : calculator.divide(a,b);break;
+            case 'r' : calculator.redo();break;
+            case 'u' : calculator.undo();break;
             default:
                 System.out.println("输入错误 ，请重新输入");
         }
