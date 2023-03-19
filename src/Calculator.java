@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -11,8 +12,8 @@ public class Calculator {
      * @param y
      * @return
      */
-    public int add(int x, int y) {
-        int result = x + y;
+    public BigDecimal add(double x, double y) {
+        BigDecimal result = new BigDecimal(x).add(new BigDecimal(y));
         undoStack.push(new Operation(x, y, '+', result));
         return result;
     }
@@ -23,8 +24,8 @@ public class Calculator {
      * @param y
      * @return
      */
-    public int subtract(int x, int y) {
-        int result = x - y;
+    public BigDecimal subtract(double x, double y) {
+        BigDecimal result = new BigDecimal(x).subtract(new BigDecimal(y));
         undoStack.push(new Operation(x, y, '-', result));
         return result;
     }
@@ -35,8 +36,8 @@ public class Calculator {
      * @param y
      * @return
      */
-    public int multiply(int x, int y) {
-        int result = x * y;
+    public BigDecimal multiply(double x, double y) {
+        BigDecimal result = new BigDecimal(x).multiply(new BigDecimal(y));
         undoStack.push(new Operation(x, y, '*', result));
         return result;
     }
@@ -47,8 +48,8 @@ public class Calculator {
      * @param y
      * @return
      */
-    public float divide(int x, int y) {
-        float result = (float) x / y;
+    public BigDecimal divide(double x, double y) {
+        BigDecimal result = new BigDecimal(x).divide(new BigDecimal(y));
         undoStack.push(new Operation(x, y, '/', result));
         return result;
     }
@@ -76,12 +77,12 @@ public class Calculator {
     }
 
     private static class Operation {
-        private int operandA;
-        private int operandB;
+        private double operandA;
+        private double operandB;
         private char operator;
-        private double result;
+        private BigDecimal result;
 
-        Operation(int operandA, int operandB, char operator, double result) {
+        Operation(double operandA, double operandB, char operator, BigDecimal result) {
             this.operandA = operandA;
             this.operandB = operandB;
             this.operator = operator;
@@ -93,14 +94,14 @@ public class Calculator {
         System.out.println("计算器demo");
         Calculator calculator = new Calculator();
         Scanner in = new Scanner(System.in);
-        int a = in.nextInt();
+        double a = in.nextDouble();
         char operator = in.next().charAt(0);
-        int b = in.nextInt();
+        double b = in.nextDouble();
         switch (operator){
             case "+" : calculator.add(a,b);break;
             case "-" : calculator.subtract(a,b);break;
             case "*" : calculator.multiply(a,b);break;
-            case "/" : calculator.subtract(a,b);break;
+            case "/" : calculator.divide(a,b);break;
             case "r" : calculator.redo();break;
             case "u" : calculator.undo();break;
             default:
